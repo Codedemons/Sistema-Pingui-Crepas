@@ -1,0 +1,42 @@
+# Project: Pigui-Crepas v.1
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+RES      = Pigui-Crepas_v.1_private.res
+OBJ      = main.o Librerias/GUI.o Librerias/WndPila.o Librerias/SQLite/sqlite3.o $(RES)
+LINKOBJ  = main.o Librerias/GUI.o Librerias/WndPila.o Librerias/SQLite/sqlite3.o $(RES)
+LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -lgdi32 -lcomdlg32 -luuid -loleaut32 -lole32 -mwindows
+INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = "Pigui-Crepas v.1.exe"
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)
+
+Librerias/GUI.o: Librerias/GUI.c
+	$(CC) -c Librerias/GUI.c -o Librerias/GUI.o $(CFLAGS)
+
+Librerias/WndPila.o: Librerias/WndPila.c
+	$(CC) -c Librerias/WndPila.c -o Librerias/WndPila.o $(CFLAGS)
+
+Librerias/SQLite/sqlite3.o: Librerias/SQLite/sqlite3.c
+	$(CC) -c Librerias/SQLite/sqlite3.c -o Librerias/SQLite/sqlite3.o $(CFLAGS)
+
+Pigui-Crepas_v.1_private.res: Pigui-Crepas_v.1_private.rc resource.rc
+	$(WINDRES) -i Pigui-Crepas_v.1_private.rc --input-format=rc -o Pigui-Crepas_v.1_private.res -O coff 
+

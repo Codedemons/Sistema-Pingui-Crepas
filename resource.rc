@@ -1,0 +1,196 @@
+#include<windows.h>
+
+#include "Librerias\api.h"
+#include "Librerias\GUI.h"
+
+// definiciones para las crepas
+#define btn_buscar_crepa  200
+#define btn_todo_crepa  198
+#define btn_Limpiar_crepa 702
+#define btn_Agregar_crepa  201
+#define btn_Modificar_crepa  202
+#define btn_Eliminar_crepa  199
+#define edit_Clave_crepa  203
+#define edit_Nombre_crepa  204
+#define edit_Tipo_crepa  205
+#define edit_Descripcion_crepa  206
+#define edit_Precio_crepa  207
+
+
+// definiciones para las bebidas
+#define btn_buscar_bebidas  210
+#define btn_todo_bebidas	208
+#define btn_Limpiar_bebidas 701
+#define btn_Eliminar_bebidas  209
+#define btn_Agregar_bebidas  211
+#define btn_Modificar_bebidas  212
+#define edit_Clave_bebidas  213
+#define edit_Nombre_bebidas  214
+#define edit_Descripcion_bebidas  215
+#define edit_Precio_bebidas  216
+
+// definiciones para el cuadro de dialogo de procedimientos de crepas empleados
+#define btn_buscar_empleados  280
+#define btn_todo_empleados 281
+#define btn_Limpiar_empleados 282
+#define btn_Eliminar_empleados  283
+#define btn_Agregar_empleados  284
+#define btn_Modificar_empleados  285
+#define edit_Usuario_empleados  286
+#define edit_Nombre_empleados  287
+#define edit_pseudonimo_empleados  288
+#define edit_password_empleados  289
+#define edit_cargo_empleados  290
+
+// definiciones para las Toppins
+#define btn_buscar_toppins  220
+#define btn_todo_toppins 300
+#define btn_Limpiar_toppins 700
+#define btn_Eliminar_toppins  219
+#define btn_Agregar_toppins  221
+#define btn_Modificar_toppins  222
+#define edit_Clave_toppins  223
+#define edit_Nombre_toppins  224
+#define edit_Descripcion_toppins  225
+#define edit_Precio_toppins  226
+
+//Programacin del Cuadro de dialo de las Crepas
+DlgCrepas DIALOG 10,10,300,200
+STYLE DS_MODALFRAME|WS_SYSMENU
+BEGIN 
+	//Botones del cuadro de dialogo	
+	CONTROL "Consultar Crepa",btn_buscar_crepa,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,177,16,80,20
+	CONTROL "Consultar Todo",btn_todo_crepa,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,197,41,80,20
+	CONTROL "Registrar Crepa",btn_Agregar_crepa,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,153,80,20
+	CONTROL "Modificar Crepa",btn_Modificar_crepa,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,106,153,80,20
+	CONTROL "Eliminar Crepa",btn_Eliminar_crepa,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,198,153,80,20
+	CONTROL "Limpiar",btn_Limpiar_crepa,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,198,124,80,20
+	//etiquetas del cuadro de dialogo
+	CONTROL "Clave Crepa",IDOK,"STATIC",SS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,22,46,10
+	CONTROL "Nombre Crepa",IDOK,"STATIC",SS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,49,55,10
+	CONTROL "Tipo Crepa",IDOK,"STATIC",SS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,76,44,10
+	CONTROL "Descripcion",IDOK,"STATIC",SS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,102,47,10
+	CONTROL "Precio Crepa",IDOK,"STATIC",SS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,127,49,10
+	//texbox del cuadro de dialogo
+	CONTROL "",edit_Clave_crepa,"EDIT",ES_READONLY|ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,76,16,84,20
+	CONTROL "",edit_Nombre_crepa,"EDIT",ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,76,41,102,20
+	CONTROL "",edit_Tipo_crepa,"EDIT",ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,76,69,84,20
+	CONTROL "",edit_Descripcion_crepa,"EDIT",ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,76,95,179,20
+	CONTROL "",edit_Precio_crepa,"EDIT",ES_NUMBER|ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,76,124,51,20
+END 
+
+//Programacin del Cuadro de dialo de las bebidas
+
+DlgBebidas DIALOG 10,10,300,200
+STYLE DS_MODALFRAME|WS_SYSMENU
+BEGIN 
+	//Botones del cuadro de dialogo	
+	CONTROL "Consultar Bebida",btn_buscar_bebidas,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,177,25,80,20
+	CONTROL "Consultar Todo",btn_todo_bebidas,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,197,52,80,20
+	CONTROL "Registrar Bebida",btn_Agregar_bebidas,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,153,80,20
+	CONTROL "Modificar Bebida",btn_Modificar_bebidas,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,106,153,80,20
+	CONTROL "Eliminar Bebida",btn_Eliminar_bebidas,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,198,153,80,20
+	CONTROL "Limpiar",btn_Limpiar_bebidas,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,198,113,80,20
+	//etiquetas del cuadro de dialogo
+	CONTROL "Clave Bebida",IDOK,"STATIC",SS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,31,46,10
+	CONTROL "Nombre Bebida",IDOK,"STATIC",SS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,59,55,10
+	CONTROL "Descripcion",IDOK,"STATIC",SS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,90,47,10
+	CONTROL "Precio Bebida",IDOK,"STATIC",SS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,116,49,10	
+	//texbox del cuadro de dialogo
+	CONTROL "",edit_Clave_bebidas,"EDIT",ES_READONLY|ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,78,25,84,20
+	CONTROL "",edit_Nombre_bebidas,"EDIT",ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,78,53,102,20
+	CONTROL "",edit_Descripcion_bebidas,"EDIT",ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,78,84,179,20
+	CONTROL "",edit_Precio_bebidas,"EDIT",ES_NUMBER|ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,78,113,51,20
+	
+END
+
+
+//Programacin del Cuadro de dialo de las empleados
+DlgEmpleados DIALOG 10,10,300,200
+STYLE DS_MODALFRAME|WS_SYSMENU
+BEGIN 
+	//Botones del cuadro de dialogo	
+	CONTROL "Consultar Empleado",btn_buscar_empleados,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,177,16,80,20
+	CONTROL "Consultar Todo",btn_todo_empleados,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,197,41,80,20
+	CONTROL "Registrar Empleado",btn_Agregar_empleados,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,153,80,20
+	CONTROL "Modificar Empleado",btn_Modificar_empleados,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,106,153,80,20
+	CONTROL "Eliminar Empleado",btn_Eliminar_empleados,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,198,153,80,20
+	CONTROL "Limpiar",btn_Limpiar_empleados,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,198,124,80,20
+	//etiquetas del cuadro de dialogo
+	CONTROL "Clave Empleado",IDOK,"STATIC",SS_LEFT|WS_CHILD|WS_VISIBLE|WS_TABSTOP,3,22,60,10
+	CONTROL "Nombre Empleado",IDOK,"STATIC",SS_LEFT|WS_CHILD|WS_VISIBLE|WS_TABSTOP,3,49,60,10
+	CONTROL "Pseudonimo",IDOK,"STATIC",SS_LEFT|WS_CHILD|WS_VISIBLE|WS_TABSTOP,3,76,69,10
+	CONTROL "Contraseña",IDOK,"STATIC",SS_LEFT|WS_CHILD|WS_VISIBLE|WS_TABSTOP,3,102,47,10
+	CONTROL "Cargo",IDOK,"STATIC",SS_LEFT|WS_CHILD|WS_VISIBLE|WS_TABSTOP,3,127,49,10
+	//texbox del cuadro de dialogo
+	CONTROL "",edit_Usuario_empleados,"EDIT",ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,76,16,84,20
+	CONTROL "",edit_Nombre_empleados,"EDIT",ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,76,41,102,20
+	CONTROL "",edit_pseudonimo_empleados,"EDIT",ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,76,69,84,20
+	CONTROL "",edit_password_empleados,"EDIT",ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,76,95,179,20
+	CONTROL "",edit_cargo_empleados,"EDIT",ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,76,124,51,20
+END
+
+//Programacin del Cuadro de dialo de las toppins
+
+DlgToppins DIALOG 10,10,300,200
+STYLE DS_MODALFRAME|WS_SYSMENU
+BEGIN 
+	//Botones del cuadro de dialogo		
+	CONTROL "Consultar Toppins",btn_buscar_toppins,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,177,25,80,20
+	CONTROL "Consultar Todo",btn_todo_toppins,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,197,52,80,20
+	CONTROL "Registrar Toppins",btn_Agregar_toppins,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,153,80,20
+	CONTROL "Modificar Toppins",btn_Modificar_toppins,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,106,153,80,20
+	CONTROL "Eliminar Toppins",btn_Eliminar_toppins,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,198,153,80,20
+	CONTROL "Limpiar",btn_Limpiar_toppins,"BUTTON",BS_PUSHBUTTON|BS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,198,113,80,20
+	
+	//etiquetas del cuadro de dialogo
+	CONTROL "Clave Toppins",IDOK,"STATIC",SS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,31,50,10
+	CONTROL "Nombre Toppins",IDOK,"STATIC",SS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,59,55,10
+	CONTROL "Descripcion",IDOK,"STATIC",SS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,90,47,10
+	CONTROL "Precio Toppins",IDOK,"STATIC",SS_CENTER|WS_CHILD|WS_VISIBLE|WS_TABSTOP,16,116,49,10	
+	//texbox del cuadro de dialogo
+	CONTROL "",edit_Clave_toppins,"EDIT",ES_READONLY|ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,78,25,84,20
+	CONTROL "",edit_Nombre_toppins,"EDIT",ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,78,53,102,20
+	CONTROL "",edit_Descripcion_toppins,"EDIT",ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,78,84,179,20
+	CONTROL "",edit_Precio_toppins,"EDIT",ES_NUMBER|ES_AUTOHSCROLL|ES_LEFT|WS_VISIBLE|WS_BORDER|WS_TABSTOP,78,113,51,20
+END
+
+//Programacin del Cuadro de dialo de las crepas
+DlgVerCrepas DIALOG 10,10,300,200
+//STYLE DS_MODALFRAME|WS_SYSMENU
+STYLE DS_NOIDLEMSG|WS_SYSMENU
+BEGIN 	
+END
+
+
+//Programacin del Cuadro de dialo de las bebidas
+DlgVerBebidas DIALOG 10,10,300,200
+//STYLE DS_MODALFRAME|WS_SYSMENU
+STYLE DS_NOIDLEMSG|WS_SYSMENU
+BEGIN 	
+END
+
+//Programacin del Cuadro de dialo de las empleados
+DlgVerEmpleados DIALOG 10,10,300,200
+//STYLE DS_MODALFRAME|WS_SYSMENU
+STYLE DS_NOIDLEMSG|WS_SYSMENU
+BEGIN 	
+END
+
+
+//Cuadro de dialogo  de toppins
+DlgVerToppins DIALOG 10,10,300,200
+//STYLE DS_MODALFRAME|WS_SYSMENU
+STYLE DS_NOIDLEMSG|WS_SYSMENU
+BEGIN 	
+END
+
+//Programacin del Cuadro de dialo de las ventas
+DlgVerVentas DIALOG 10,10,300,200
+//STYLE DS_MODALFRAME|WS_SYSMENU
+STYLE DS_NOIDLEMSG|WS_SYSMENU
+BEGIN 	
+END
+
+
+
